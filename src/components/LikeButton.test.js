@@ -1,24 +1,19 @@
 import React from 'react'
 import {shallow} from 'enzyme'
+import sinon from 'sinon'
 import LikeButton from './LikeButton'
 
 describe('<LikeButton />', () => {
-  const button = shallow(<LikeButton/>)
+  const toggleLike = sinon.spy()
+  const button = shallow(<LikeButton liked={false} onChange={toggleLike}/>)
 
   it('is wrapped in a like class', () => {
     expect(button).toHaveClassName('like')
   })
 
-  it('it is not liked initially', () => {
-    expect(button).toHaveState('liked', false)
-  })
-
-  it('it toggles when clicked', () => {
+  it('calls on change', () => {
     button.find('button').simulate('click')
-    expect(button).toHaveState('liked', true)
-    button.find('button').simulate('click')
-    expect(button).toHaveState('liked', false)
+    expect(toggleLike.callCount).toBe(1)
   })
-
 
 })

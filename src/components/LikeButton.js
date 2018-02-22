@@ -1,17 +1,16 @@
 import React, {PureComponent} from 'react'
+import PropTypes from 'prop-types'
 import './LikeButton.css'
 
 class LikeButton extends PureComponent {
-  constructor() {
-    super()
 
-    this.state = {
-      liked: false
-    }
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    liked: PropTypes.bool
   }
 
   classNames() {
-    const {liked} = this.state
+    const {liked} = this.props
     let classes = 'like'
 
     if (liked) {
@@ -22,13 +21,11 @@ class LikeButton extends PureComponent {
   }
 
   toggleLike() {
-    this.setState({
-      liked: !this.state.liked
-    })
+    this.props.onChange()
   }
 
   render() {
-    const {liked} = this.state
+    const {liked} = this.props
     return (
       <p className={this.classNames()}>
         <button onClick={this.toggleLike.bind(this)}>
