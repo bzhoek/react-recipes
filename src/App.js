@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import RecipesContainer from './components/RecipesContainer'
-import './App.css';
 
 const recipes = [
   {
