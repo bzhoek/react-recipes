@@ -1,40 +1,36 @@
-import React, {PureComponent} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import './LikeButton.css'
 
-class LikeButton extends PureComponent {
+const LikeButton = props => {
 
-  static propTypes = {
-    onChange: PropTypes.func.isRequired,
-    liked: PropTypes.bool
-  }
-
-  classNames() {
-    const {liked} = this.props
+  const classNames = () => {
     let classes = 'like'
 
-    if (liked) {
+    if (props.liked) {
       classes += ' liked'
     }
 
     return classes
   }
 
-  toggleLike() {
-    this.props.onChange()
+  const toggleLike = () => {
+    props.onChange()
   }
 
-  render() {
-    const {liked} = this.props
-    return (
-      <p className={this.classNames()}>
-        <button onClick={this.toggleLike.bind(this)}>
-          {liked ? '❤️' : '♡'}
-        </button>
-        <span className="likes">{liked ? 'You like this' : null}</span>
-      </p>
-    )
-  }
+  return (
+    <p className={classNames()}>
+      <button onClick={toggleLike}>
+        {props.liked ? '❤️' : '♡'}
+      </button>
+      <span className="likes">{props.liked ? 'You like this' : null}</span>
+    </p>
+  )
+}
+
+LikeButton.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  liked: PropTypes.bool
 }
 
 export default LikeButton

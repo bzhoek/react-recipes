@@ -1,26 +1,24 @@
-import React, {PureComponent} from 'react'
+import React from 'react'
 import RecipeItem from './RecipeItem'
 import Title from './Title'
 
-class RecipesContainer extends PureComponent {
+const RecipesContainer = props => {
 
-  renderRecipe(recipe, index) {
-    return <RecipeItem key={index} onChange={() => this.props.updateRecipe(recipe._id)} {...recipe}/>
+  const renderRecipe = (recipe, index) => {
+    return <RecipeItem key={index} onChange={() => props.updateRecipe(recipe._id)} {...recipe}/>
   }
 
-  render() {
-    return (
-      <div className="recipes wrapper">
-        <header>
-          <Title content="Recipes"/>
-        </header>
+  return (
+    <div className="recipes wrapper">
+      <header>
+        <Title content="Recipes"/>
+      </header>
 
-        <main>
-          {this.props.recipes.map(this.renderRecipe.bind(this))}
-        </main>
-      </div>
-    )
-  }
+      <main>
+        {props.recipes.map(renderRecipe)}
+      </main>
+    </div>
+  )
 }
 
 export default RecipesContainer
