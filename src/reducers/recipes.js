@@ -1,6 +1,6 @@
 import {CREATE_RECIPE} from "../actions/recipes/create"
 
-const recipes = [
+export const initial = [
   {
     _id: 'abcd123',
     title: 'Spanish Omelette',
@@ -43,7 +43,7 @@ const recipes = [
   },
 ]
 
-export default (state = recipes, {type, payload}) => {
+export default (state = initial, {type, payload} = {}) => {
   switch (type) {
     case CREATE_RECIPE:
       return [Object.assign({}, payload)].concat(state)
