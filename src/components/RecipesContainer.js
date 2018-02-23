@@ -1,8 +1,10 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import RecipeItem from './RecipeItem'
+import RecipeEditor from './RecipeEditor'
 import Title from './Title'
 
-const RecipesContainer = props => {
+export const RecipesContainer = props => {
 
   const renderRecipe = (recipe, index) => {
     return <RecipeItem key={index} onChange={() => props.updateRecipe(recipe._id)} {...recipe}/>
@@ -12,6 +14,7 @@ const RecipesContainer = props => {
     <div className="recipes wrapper">
       <header>
         <Title content="Recipes"/>
+        <RecipeEditor/>
       </header>
 
       <main>
@@ -21,4 +24,6 @@ const RecipesContainer = props => {
   )
 }
 
-export default RecipesContainer
+const mapStateToProps = ({recipes}) => ({recipes})
+
+export default connect(mapStateToProps)(RecipesContainer)

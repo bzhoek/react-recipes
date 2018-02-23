@@ -1,6 +1,6 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-import RecipesContainer from './RecipesContainer'
+import {RecipesContainer} from './RecipesContainer'
 import Title from './Title'
 
 describe('<RecipesContainer />', () => {
